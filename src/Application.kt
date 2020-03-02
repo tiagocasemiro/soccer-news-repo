@@ -33,6 +33,9 @@ fun Application.module(testing: Boolean = false) {
         get("/health") {
             call.respond(mapOf("status" to "UP"))
         }
+        get("/") {
+            call.respond(mapOf("status" to "UP"))
+        }
     }
 }
 
