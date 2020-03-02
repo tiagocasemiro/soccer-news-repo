@@ -1,0 +1,6 @@
+{
+  "name": "Start on Heroku: Kotlin",
+  "description": "A Soccer news Kotlin app.",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
