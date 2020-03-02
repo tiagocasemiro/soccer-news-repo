@@ -1,1 +1,1 @@
-web:    java -jar target/soccernews.jar
+web:    build/install/kotlinserver/bin/kotlinserver
