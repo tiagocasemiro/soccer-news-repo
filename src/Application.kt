@@ -1,6 +1,6 @@
 package com.soccer.news
 
-import com.soccer.news.com.news.repository.ArticleService
+import com.soccer.news.com.news.service.ArticleService
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -38,13 +38,16 @@ fun Application.module() {
     routing {
         val articleService: ArticleService by inject()
 
+        get("/") {
+            call.respond(mapOf("status" to "UP"))
+        }
         get("/health") {
             call.respond(mapOf("status" to "UP"))
         }
         get("/articles") {
             try {
                 val query = "bitcoin"
-                val from = "2020-02-10"
+                val from = "2020-02-11"
                 val sortBy = "publishedAt"
 
                 val articles = articleService.articles(query, from, sortBy)

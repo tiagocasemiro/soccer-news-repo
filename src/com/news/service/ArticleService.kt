@@ -1,4 +1,4 @@
-package com.soccer.news.com.news.repository
+package com.soccer.news.com.news.service
 
 import com.news.domain.Articles
 import com.soccer.news.com.news.repository.remote.ArticleRepository
