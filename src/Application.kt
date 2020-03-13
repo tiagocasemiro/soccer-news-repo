@@ -1,5 +1,3 @@
-package com.soccer.news
-
 import com.soccer.news.com.news.service.ArticleService
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -12,7 +10,6 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.inject
-import java.lang.Exception
 import java.net.UnknownHostException
 
 

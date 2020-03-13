@@ -31,7 +31,7 @@ sourceSets {
 
 shadowJar {   
     manifest {
-        attributes 'Main-Class': 'com.ApplicationKt'
+        attributes 'Main-Class': 'ApplicationKt'
     }
 }
 

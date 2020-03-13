@@ -1,5 +1,3 @@
-package com.soccer.news
-
 import com.soccer.news.com.news.service.ArticleService
 import com.soccer.news.com.news.repository.remote.ArticleRepository
 import com.soccer.news.com.news.repository.remote.GoogleNewsApi
