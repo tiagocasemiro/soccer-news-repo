@@ -1,1 +1,1 @@
-web: java -cp build/libs/news-0.0.1.jar ApplicationKt
+web: java -jar build/libs/news-0.0.1.jar
