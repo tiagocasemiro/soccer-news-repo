@@ -1,1 +1,1 @@
-web:    java -jar target/news-0.0.1.jar
+web:    java -jar build/libs/news-0.0.1.jar
