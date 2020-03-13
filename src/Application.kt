@@ -43,7 +43,7 @@ fun Application.module() {
         get("/articles") {
             try {
                 val query = "bitcoin"
-                val from = "2020-02-11"
+                val from = "2020-02-13"
                 val sortBy = "publishedAt"
 
                 val articles = articleService.articles(query, from, sortBy)
