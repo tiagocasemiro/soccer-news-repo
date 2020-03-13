@@ -16,11 +16,11 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 task stage {
     dependsOn installDist
+    dependsOn shadowJar
 }
 
 group 'com.soccer.news'
 version '0.0.1'
-
 
 sourceSets {
     main.kotlin.srcDirs = main.java.srcDirs = ['src']
@@ -31,7 +31,7 @@ sourceSets {
 
 shadowJar {   
     manifest {
-        attributes 'Main-Class': 'io.ktor.server.netty.EngineMain'
+        attributes 'Main-Class': 'ApplicationKt'
     }
 }
 
