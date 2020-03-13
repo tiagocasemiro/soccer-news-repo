@@ -11,8 +11,8 @@ buildscript {
 
 apply plugin: 'kotlin'
 apply plugin: 'application'
-//mainClassName = 'com.soccer.news.ApplicationKt'
-mainClassName = "io.ktor.server.netty.EngineMain"
+mainClassName = 'ApplicationKt'
+//mainClassName = "io.ktor.server.netty.EngineMain"
 apply plugin: 'com.github.johnrengelman.shadow'
 
 task stage {
