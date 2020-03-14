@@ -1,7 +1,7 @@
-import com.soccer.news.com.news.service.ArticleService
-import com.soccer.news.com.news.repository.remote.ArticleRepository
-import com.soccer.news.com.news.repository.remote.GoogleNewsApi
-import com.soccer.news.com.news.repository.remote.HeaderInterceptor
+import com.news.repository.remote.ArticleRepository
+import com.news.repository.remote.GoogleNewsApi
+import com.news.repository.remote.HeaderInterceptor
+import com.news.service.ArticleService
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit

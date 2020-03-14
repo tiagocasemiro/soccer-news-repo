@@ -1,4 +1,4 @@
-package com.news.domain
+package com.news.domain.google
 
 import com.google.gson.annotations.SerializedName
 
