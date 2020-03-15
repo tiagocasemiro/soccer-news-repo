@@ -27,7 +27,7 @@ val retrofitModules = module {
     }
 }
 
-val sericeModules = module {
+val serviceModules = module {
     factory {
         ArticleService(articleRepository = get())
     }
