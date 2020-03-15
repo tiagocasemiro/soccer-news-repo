@@ -8,8 +8,13 @@ import org.koin.ktor.ext.Koin
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
+private const val countryBr = "br"
+private const val languagePt = "pt"
+const val countryDefault = countryBr
+const val languageDefault = languagePt
+
 @Suppress("unused") // Referenced in application.conf
-fun Application.module() {
+fun Application.configuration() {
     install(ContentNegotiation) {
         gson {
         }
@@ -18,7 +23,7 @@ fun Application.module() {
         modules(
            listOf(
                retrofitModules,
-               sericeModules,
+               serviceModules,
                repositoryModules
            )
         )
