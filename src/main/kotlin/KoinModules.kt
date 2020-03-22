@@ -1,12 +1,18 @@
-import com.news.repository.remote.ArticleRepository
-import com.news.repository.remote.GoogleNewsApi
-import com.news.repository.remote.HeaderInterceptor
+import com.news.repository.remote.exame.ExameRepository
+import com.news.repository.remote.google.ArticleRepository
+import com.news.repository.remote.google.GoogleNewsApi
+import com.news.repository.remote.google.HeaderInterceptor
+import com.news.repository.remote.nexo.NexoRepository
 import com.news.service.ArticleService
+import com.rometools.rome.io.SyndFeedInput
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URL
 import java.util.concurrent.TimeUnit
+
 
 val retrofitModules = module {
     factory {
@@ -15,6 +21,7 @@ val retrofitModules = module {
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(HeaderInterceptor())
+                    .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
                     .connectTimeout(5, TimeUnit.SECONDS)
                     .readTimeout(5, TimeUnit.SECONDS)
                     .build()
@@ -27,14 +34,26 @@ val retrofitModules = module {
     }
 }
 
+val rssModule = module() {
+    factory {
+        SyndFeedInput()
+    }
+}
+
 val serviceModules = module {
     factory {
-        ArticleService(articleRepository = get())
+        ArticleService(articleRepository = get(), exameRepository = get(), nexoRepository = get())
     }
 }
 
 val repositoryModules = module {
     factory {
         ArticleRepository(googleNewsApi = get())
+    }
+    factory {
+        ExameRepository(syndFeedInput = get())
+    }
+    factory {
+        NexoRepository(syndFeedInput = get())
     }
 }

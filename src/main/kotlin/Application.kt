@@ -24,7 +24,8 @@ fun Application.configuration() {
            listOf(
                retrofitModules,
                serviceModules,
-               repositoryModules
+               repositoryModules,
+               rssModule
            )
         )
     }

@@ -71,4 +71,24 @@ fun Routing.articles() {
             call.response.status(HttpStatusCode.InternalServerError)
         }
     }
+
+    get("/exame") {
+        try {
+            call.respond(articleService.exame())
+        }catch (e: UnknownHostException) {
+            call.response.status(HttpStatusCode.FailedDependency)
+        }catch (e: Exception) {
+            call.response.status(HttpStatusCode.InternalServerError)
+        }
+    }
+
+    get("/nexo") {
+        try {
+            call.respond(articleService.nexo())
+        }catch (e: UnknownHostException) {
+            call.response.status(HttpStatusCode.FailedDependency)
+        }catch (e: Exception) {
+            call.response.status(HttpStatusCode.InternalServerError)
+        }
+    }
 }

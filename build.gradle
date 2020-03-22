@@ -76,6 +76,9 @@ dependencies {
 
     // Banco de memoria
     implementation "com.h2database:h2:1.4.200"
+    
+    //Leitor de rss
+    implementation 'com.rometools:rome:1.12.2'
 
     //Web client
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'

@@ -1,4 +1,4 @@
-package com.news.repository.remote
+package com.news.repository.remote.google
 
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
@@ -14,6 +14,7 @@ class HeaderInterceptor: Interceptor {
 
         val builder = chain.request().newBuilder().url(url)
             .addHeader("X-Api-Key", apiKey)
+
 
         val request: Request = builder.build()
 

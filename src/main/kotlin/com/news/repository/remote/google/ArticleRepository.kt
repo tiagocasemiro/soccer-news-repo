@@ -1,4 +1,4 @@
-package com.news.repository.remote
+package com.news.repository.remote.google
 
 import com.news.domain.google.Articles
 import com.news.domain.google.Sources
