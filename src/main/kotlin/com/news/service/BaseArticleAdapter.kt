@@ -3,19 +3,27 @@ package com.news.service
 import com.news.domain.google.Article
 import com.news.domain.google.Articles
 import com.news.domain.google.Source
+import com.rometools.rome.feed.synd.SyndEntry
 import com.rometools.rome.feed.synd.SyndFeed
 
-class ArticleAdapter(override val from: SyndFeed): BaseArticles<SyndFeed> {
-    private val entries = from.entries
+open class BaseArticleAdapter(private val from: SyndFeed) {
+    private val entries = from.entries?: listOf<SyndEntry>()
     private val statusSuccess = "ok"
 
-    override fun count(): Int {
+    fun count(): Int {
         return entries.size
     }
 
-    override fun article(position: Int): Article {
-        val entry = entries[position]
+    fun articles(): Articles {
+        val listArticle = mutableListOf<Article>()
+        entries.forEach {
+            listArticle.add(article(it))
+        }
 
+        return Articles(statusSuccess, count(), listArticle)
+    }
+
+    open fun article(entry: SyndEntry): Article {
         return Article(
             source = Source(name = from.author?: from.title, description = from.description, url = from.link),
             author = entry.author,
@@ -25,14 +33,5 @@ class ArticleAdapter(override val from: SyndFeed): BaseArticles<SyndFeed> {
             publishedAt = entry.publishedDate?.time?.toString(),
             content = entry.description.value
         )
-    }
-
-    override fun articles(): Articles {
-        val listArticle = mutableListOf<Article>()
-        entries.forEachIndexed { index, _ ->
-            listArticle.add(article(index))
-        }
-
-        return Articles(statusSuccess, count(), listArticle)
     }
 }

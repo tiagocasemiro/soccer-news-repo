@@ -1,10 +1,12 @@
 import com.news.routes.articles
 import io.ktor.application.Application
 import io.ktor.application.install
+import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.routing.routing
 import org.koin.ktor.ext.Koin
+import org.slf4j.event.Level
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -31,6 +33,10 @@ fun Application.configuration() {
     }
     routing {
         articles()
+    }
+
+    install(CallLogging) {
+        level = Level.INFO
     }
 }
 

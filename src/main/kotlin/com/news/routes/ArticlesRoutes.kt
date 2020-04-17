@@ -91,4 +91,14 @@ fun Routing.articles() {
             call.response.status(HttpStatusCode.InternalServerError)
         }
     }
+
+    get("/the-intercept-brasil") {
+        try {
+            call.respond(articleService.intercept())
+        }catch (e: UnknownHostException) {
+            call.response.status(HttpStatusCode.FailedDependency)
+        }catch (e: Exception) {
+            call.response.status(HttpStatusCode.InternalServerError)
+        }
+    }
 }

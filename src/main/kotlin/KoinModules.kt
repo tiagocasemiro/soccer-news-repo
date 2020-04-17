@@ -2,6 +2,7 @@ import com.news.repository.remote.exame.ExameRepository
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.google.GoogleNewsApi
 import com.news.repository.remote.google.HeaderInterceptor
+import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.nexo.NexoRepository
 import com.news.service.ArticleService
 import com.rometools.rome.io.SyndFeedInput
@@ -42,7 +43,7 @@ val rssModule = module() {
 
 val serviceModules = module {
     factory {
-        ArticleService(articleRepository = get(), exameRepository = get(), nexoRepository = get())
+        ArticleService(articleRepository = get(), exameRepository = get(), nexoRepository = get(), interceptRepository = get())
     }
 }
 
@@ -55,5 +56,8 @@ val repositoryModules = module {
     }
     factory {
         NexoRepository(syndFeedInput = get())
+    }
+    factory {
+        InterceptRepository(syndFeedInput = get())
     }
 }
