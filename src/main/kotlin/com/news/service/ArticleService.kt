@@ -6,8 +6,14 @@ import com.news.repository.remote.exame.ExameRepository
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.nexo.NexoRepository
+import com.news.repository.remote.techmundo.TechMundoRepository
 
-class ArticleService(private val articleRepository: ArticleRepository, private  val exameRepository: ExameRepository, private val nexoRepository: NexoRepository, private val interceptRepository: InterceptRepository) {
+class ArticleService(
+    private val articleRepository: ArticleRepository,
+    private val exameRepository: ExameRepository,
+    private val nexoRepository: NexoRepository,
+    private val interceptRepository: InterceptRepository,
+    private val techMundoRepository: TechMundoRepository) {
 
     fun everything(query: String): Articles {
         return articleRepository.everything(query)
@@ -45,6 +51,13 @@ class ArticleService(private val articleRepository: ArticleRepository, private  
 
     fun intercept(): Articles {
         val nexo = interceptRepository.feed()
+        val adapter = BaseArticleAdapter(nexo)
+
+        return adapter.articles()
+    }
+
+    fun techmundo(): Articles {
+        val nexo = techMundoRepository.feed()
         val adapter = BaseArticleAdapter(nexo)
 
         return adapter.articles()

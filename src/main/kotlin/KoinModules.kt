@@ -4,6 +4,7 @@ import com.news.repository.remote.google.GoogleNewsApi
 import com.news.repository.remote.google.HeaderInterceptor
 import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.nexo.NexoRepository
+import com.news.repository.remote.techmundo.TechMundoRepository
 import com.news.service.ArticleService
 import com.rometools.rome.io.SyndFeedInput
 import okhttp3.OkHttpClient
@@ -43,7 +44,7 @@ val rssModule = module() {
 
 val serviceModules = module {
     factory {
-        ArticleService(articleRepository = get(), exameRepository = get(), nexoRepository = get(), interceptRepository = get())
+        ArticleService(articleRepository = get(), exameRepository = get(), nexoRepository = get(), interceptRepository = get(), techMundoRepository = get())
     }
 }
 
@@ -59,5 +60,8 @@ val repositoryModules = module {
     }
     factory {
         InterceptRepository(syndFeedInput = get())
+    }
+    factory {
+        TechMundoRepository(syndFeedInput = get())
     }
 }

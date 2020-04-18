@@ -101,4 +101,14 @@ fun Routing.articles() {
             call.response.status(HttpStatusCode.InternalServerError)
         }
     }
+
+    get("/tech-mundo") {
+        try {
+            call.respond(articleService.techmundo())
+        }catch (e: UnknownHostException) {
+            call.response.status(HttpStatusCode.FailedDependency)
+        }catch (e: Exception) {
+            call.response.status(HttpStatusCode.InternalServerError)
+        }
+    }
 }
