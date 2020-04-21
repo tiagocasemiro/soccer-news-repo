@@ -86,8 +86,10 @@ fun Routing.articles() {
         try {
             call.respond(articleService.nexo())
         }catch (e: UnknownHostException) {
+            e.printStackTrace()
             call.response.status(HttpStatusCode.FailedDependency)
         }catch (e: Exception) {
+            e.printStackTrace()
             call.response.status(HttpStatusCode.InternalServerError)
         }
     }
