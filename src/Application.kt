@@ -1,6 +1,7 @@
 import com.news.routes.articles
 import com.news.routes.documentations
 import com.papsign.ktor.openapigen.OpenAPIGen
+import com.papsign.ktor.openapigen.route.apiRouting
 import com.papsign.ktor.openapigen.schema.namer.DefaultSchemaNamer
 import com.papsign.ktor.openapigen.schema.namer.SchemaNamer
 import io.ktor.application.*
@@ -28,7 +29,6 @@ fun Application.module() {
         )
     }
     install(OpenAPIGen) {
-        // basic info
         info {
             version = "0.0.1"
             title = "Dashboard app open api"
@@ -38,18 +38,18 @@ fun Application.module() {
                 email = "tiagocasemiro@hotmail.com"
             }
         }
-        // describe the server, add as many as you want
         server("https://soccer-news-gatway.herokuapp.com/") {
             description = "Dashboard api"
         }
-
-        //optional custom schema object namer
         replaceModule(DefaultSchemaNamer, object: SchemaNamer {
             val regex = Regex("[A-Za-z0-9_.]+")
             override fun get(type: KType): String {
                 return type.toString().replace(regex) { it.value.split(".").last() }.replace(Regex(">|<|, "), "_")
             }
         })
+    }
+    apiRouting {
+        documentations()
     }
     routing {
         documentations()
