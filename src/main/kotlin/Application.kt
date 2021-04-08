@@ -1,8 +1,6 @@
 import com.news.routes.articles
 import com.papsign.ktor.openapigen.route.apiRouting
-import com.news.routes.documentations
 import com.papsign.ktor.openapigen.OpenAPIGen
-import com.papsign.ktor.openapigen.route.apiRouting
 import com.papsign.ktor.openapigen.schema.namer.DefaultSchemaNamer
 import com.papsign.ktor.openapigen.schema.namer.SchemaNamer
 import io.ktor.application.*
