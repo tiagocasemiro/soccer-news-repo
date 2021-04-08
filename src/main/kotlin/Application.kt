@@ -1,6 +1,9 @@
 import com.news.routes.articles
+import com.news.routes.documentations
+import com.news.service.ArticleService
 import com.papsign.ktor.openapigen.route.apiRouting
 import com.papsign.ktor.openapigen.OpenAPIGen
+import com.papsign.ktor.openapigen.interop.withAPI
 import com.papsign.ktor.openapigen.schema.namer.DefaultSchemaNamer
 import com.papsign.ktor.openapigen.schema.namer.SchemaNamer
 import io.ktor.application.*
@@ -12,8 +15,14 @@ import kotlin.reflect.KType
 import io.ktor.application.install
 import io.ktor.features.CallLogging
 import io.ktor.gson.gson
+import io.ktor.http.*
+import io.ktor.http.HttpStatusCode.Companion.FailedDependency
+import io.ktor.http.HttpStatusCode.Companion.InternalServerError
+import io.ktor.response.*
 import io.ktor.routing.routing
+import org.koin.ktor.ext.inject
 import org.slf4j.event.Level
+import java.net.UnknownHostException
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -23,7 +32,7 @@ const val countryDefault = countryBr
 const val languageDefault = languagePt
 
 @Suppress("unused") // Referenced in application.conf
-fun Application.module() {
+fun Application.configuration() {
     install(ContentNegotiation) {
         gson {
         }
@@ -58,16 +67,17 @@ fun Application.module() {
             }
         })
     }
+    install(CallLogging) {
+        level = Level.INFO
+    }
     apiRouting {
-        documentations()
+        val articleService: ArticleService by inject()
+
+        articles(articleService)
     }
     routing {
         documentations()
-        articles()
-    }
-
-    install(CallLogging) {
-        level = Level.INFO
+        //articles()
     }
 }
 
