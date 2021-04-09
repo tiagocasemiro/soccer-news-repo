@@ -3,17 +3,16 @@ package com.news.service
 import com.news.domain.google.Articles
 import com.news.domain.google.Sources
 import com.news.domain.nexo.NexoArticle
-import com.news.repository.remote.exame.ExameRepository
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.nexo.NexoRepository
 import com.news.repository.remote.techmundo.TechMundoRepository
-import com.news.service.adapter.BaseArticleAdapter
+import com.news.service.adapter.InterceptAdapter
 import com.news.service.adapter.NexoAdapter
+import com.news.service.adapter.TechMundoAdapter
 
 class ArticleService(
     private val articleRepository: ArticleRepository,
-    private val exameRepository: ExameRepository,
     private val nexoRepository: NexoRepository,
     private val interceptRepository: InterceptRepository,
     private val techMundoRepository: TechMundoRepository) {
@@ -38,15 +37,6 @@ class ArticleService(
         return articleRepository.sources()
     }
 
-    fun exame(): Articles {
-       /* val exame = exameRepository.feed()
-        val adapter = BaseArticleAdapter(exame)
-
-        return adapter.articles()*/
-
-        return Articles::class.java.newInstance()
-    }
-
     fun nexo(): List<NexoArticle> {
         val nexo = nexoRepository.feed()
         val adapter = NexoAdapter(nexo)
@@ -55,19 +45,19 @@ class ArticleService(
     }
 
     fun intercept(): Articles {
-       /* val nexo = interceptRepository.feed()
-        val adapter = BaseArticleAdapter(nexo)
+        val intercept = interceptRepository.feed()
+        val adapter = InterceptAdapter(intercept)
+        val list = adapter.articles()
 
-        return adapter.articles()*/
-        return Articles::class.java.newInstance()
+        return Articles(status = "success", totalResults = list.size, articles = list)
     }
 
     fun techmundo(): Articles {
-        /*val nexo = techMundoRepository.feed()
-        val adapter = BaseArticleAdapter(nexo)
+        val techMundo = techMundoRepository.feed()
+        val adapter = TechMundoAdapter(techMundo)
+        val list = adapter.articles()
 
-        return adapter.articles()*/
-        return Articles::class.java.newInstance()
+        return Articles(status = "success", totalResults = list.size, articles = list)
     }
 
 }
