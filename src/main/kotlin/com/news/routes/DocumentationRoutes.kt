@@ -36,7 +36,7 @@ fun Routing.documentations() {
 
 fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
 
-    route("/health").get<NoParameter, Map<String, String>>(example = mapOf("status" to "UP")) {
+    route("/health").get<NoParameter, Map<String, String>>(info("Status server", "Return UP if server working")) {
         respond(mapOf("status" to "UP"))
     }
     data class EverythingParameters(@QueryParam("A query to find articles") val query: String? = null)
@@ -45,11 +45,11 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
 
     throws(InternalServerError, Exception::class) {
         throws(FailedDependency, UnknownHostException::class) {
-            route("/headlines").get<NoParameter, Articles>(info("All articles available", "List all articles")) {
+            route("/headlines").get<NoParameter, Articles>(info("All main articles ", "List all main articles in the moment")) {
                 respond(articleService.headlines())
             }
 
-            route("/everything").get<EverythingParameters, Articles> { parameters ->
+            route("/everything").get<EverythingParameters, Articles>(info("All articles available", "List all articles")) { parameters ->
                 parameters.query?.let { q ->
                     respond(articleService.everything(q))
                 }?: run {
@@ -57,7 +57,7 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
                 }
             }
 
-            route("/headlines/source/{source}").get<HeadlinesSourceParameters, Articles> { parameters ->
+            route("/headlines/source/{source}").get<HeadlinesSourceParameters, Articles>(info("All main articles of source", "List all main articles by source on the moment")) { parameters ->
                 respond(articleService.headlines(parameters.source))
             }
 
