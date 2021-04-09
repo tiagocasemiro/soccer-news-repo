@@ -1,9 +1,8 @@
 import com.news.routes.articles
 import com.news.routes.documentations
 import com.news.service.ArticleService
-import com.papsign.ktor.openapigen.route.apiRouting
 import com.papsign.ktor.openapigen.OpenAPIGen
-import com.papsign.ktor.openapigen.interop.withAPI
+import com.papsign.ktor.openapigen.route.apiRouting
 import com.papsign.ktor.openapigen.schema.namer.DefaultSchemaNamer
 import com.papsign.ktor.openapigen.schema.namer.SchemaNamer
 import io.ktor.application.*
@@ -11,18 +10,9 @@ import io.ktor.features.*
 import io.ktor.gson.*
 import io.ktor.routing.*
 import org.koin.ktor.ext.Koin
-import kotlin.reflect.KType
-import io.ktor.application.install
-import io.ktor.features.CallLogging
-import io.ktor.gson.gson
-import io.ktor.http.*
-import io.ktor.http.HttpStatusCode.Companion.FailedDependency
-import io.ktor.http.HttpStatusCode.Companion.InternalServerError
-import io.ktor.response.*
-import io.ktor.routing.routing
 import org.koin.ktor.ext.inject
 import org.slf4j.event.Level
-import java.net.UnknownHostException
+import kotlin.reflect.KType
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -77,7 +67,6 @@ fun Application.configuration() {
     }
     routing {
         documentations()
-        //articles()
     }
 }
 
