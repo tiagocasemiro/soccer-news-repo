@@ -1,4 +1,3 @@
-import com.news.repository.remote.exame.ExameRepository
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.google.GoogleNewsApi
 import com.news.repository.remote.google.HeaderInterceptor
@@ -12,7 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URL
 import java.util.concurrent.TimeUnit
 
 
@@ -44,16 +42,13 @@ val rssModule = module() {
 
 val serviceModules = module {
     factory {
-        ArticleService(articleRepository = get(), exameRepository = get(), nexoRepository = get(), interceptRepository = get(), techMundoRepository = get())
+        ArticleService(articleRepository = get(), nexoRepository = get(), interceptRepository = get(), techMundoRepository = get())
     }
 }
 
 val repositoryModules = module {
     factory {
         ArticleRepository(googleNewsApi = get())
-    }
-    factory {
-        ExameRepository(syndFeedInput = get())
     }
     factory {
         NexoRepository(syndFeedInput = get())
