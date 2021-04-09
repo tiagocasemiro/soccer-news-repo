@@ -11,7 +11,7 @@ class NexoAdapter(from: SyndFeed) : BaseArticleAdapter<NexoArticle>(from) {
 
         return NexoArticle(
             source = Source(
-                name = entry.title,
+                name = entry.source?.title?: "Nexo Jornal",
                 description = entry.description.value,
                 link = entry.link,
                 image = null),
