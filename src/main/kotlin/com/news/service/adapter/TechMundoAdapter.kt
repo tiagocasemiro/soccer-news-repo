@@ -1,7 +1,7 @@
 package com.news.service.adapter
 
-import com.news.domain.google.Article
-import com.news.domain.google.Source
+import com.news.domain.Article
+import com.news.domain.Source
 import com.rometools.rome.feed.synd.SyndEntry
 import com.rometools.rome.feed.synd.SyndFeed
 

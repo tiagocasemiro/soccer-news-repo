@@ -1,7 +1,7 @@
 package com.news.repository.remote.google
 
-import com.news.domain.google.Articles
-import com.news.domain.google.Sources
+import com.news.domain.Articles
+import com.news.domain.Sources
 import countryDefault
 import languageDefault
 import retrofit2.Call

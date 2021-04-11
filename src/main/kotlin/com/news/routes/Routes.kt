@@ -2,9 +2,9 @@
 
 package com.news.routes
 
-import com.news.domain.google.Articles
-import com.news.domain.google.Sources
-import com.news.domain.nexo.NexoArticle
+import com.news.domain.Article
+import com.news.domain.Articles
+import com.news.domain.Sources
 import com.news.service.ArticleService
 import com.papsign.ktor.openapigen.annotations.parameters.PathParam
 import com.papsign.ktor.openapigen.annotations.parameters.QueryParam
@@ -25,6 +25,7 @@ import java.net.UnknownHostException
 open class NoParameter
 
 fun Routing.documentations() {
+
     get("/openapi.json") {
         call.respond(application.openAPIGen.api.serialize())
     }
@@ -46,6 +47,7 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
             route("/headlines").get<NoParameter, Articles>(info("All main articles ", "List all main articles in the moment")) {
                 respond(articleService.headlines())
             }
+
             route("/everything").get<EverythingParameters, Articles>(info("All articles available", "List all articles")) { parameters ->
                 parameters.query?.let { q ->
                     respond(articleService.everything(q))
@@ -53,28 +55,31 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
                     respond(articleService.headlines())
                 }
             }
+
             route("/headlines/source/{source}").get<HeadlinesSourceParameters, Articles>(info("All main articles of source", "List all main articles by source on the moment")) { parameters ->
                 respond(articleService.headlines(parameters.source))
             }
+
             route("/sources").get<NoParameter, Sources>(info("Sources available", "List all source")) {
                 respond(articleService.sources())
             }
+
             route("/categories").get<NoParameter, List<String>>(info("Categories available", "List all categories")) {
-                respond(listOf("business", "entertainment", "general", "health", "science", "sports", "technology"))
+                respond(articleService.categories())
             }
+
             route("/category/{category}").get<CategoryParameters, Articles>(info("Articles available on category", "List all articles of category")) { parameters ->
                  respond(articleService.category(parameters.category))
             }
-            route("/nexo").get<NoParameter, List<NexoArticle>>(info("Articles available from nexo", "List all articles of nexo")) {
+
+            route("/nexo").get<NoParameter, List<Article>>(info("Articles available from nexo", "List all articles of nexo")) {
                 respond(articleService.nexo())
             }
+
             route("/the-intercept-brasil").get<NoParameter, Articles>(info("Articles available from the intercept brasil", "List all articles of the intercept brasil")) {
-                try {
-                    respond(articleService.theInterceptBrazil())
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+                respond(articleService.theInterceptBrazil())
             }
+
             route("/tech-mundo").get<NoParameter, Articles>(info("Articles available from tech mundo", "List all articles of tech mundo")) {
                 respond(articleService.techMundo())
             }

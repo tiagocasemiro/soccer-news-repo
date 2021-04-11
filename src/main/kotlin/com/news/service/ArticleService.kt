@@ -1,8 +1,8 @@
 package com.news.service
 
-import com.news.domain.google.Articles
-import com.news.domain.google.Sources
-import com.news.domain.nexo.NexoArticle
+import com.news.domain.Article
+import com.news.domain.Articles
+import com.news.domain.Sources
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.nexo.NexoRepository
@@ -33,11 +33,15 @@ class ArticleService(
         return articleRepository.category(category)
     }
 
+    fun categories(): List<String> {
+        return listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
+    }
+
     fun sources(): Sources {
         return articleRepository.sources()
     }
 
-    fun nexo(): List<NexoArticle> {
+    fun nexo(): List<Article> {
         val nexo = nexoRepository.feed()
         val adapter = NexoAdapter(nexo)
 
