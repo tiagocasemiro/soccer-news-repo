@@ -65,6 +65,10 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
                 respond(articleService.sources())
             }
 
+            route("/categories").get<NoParameter, List<String>>(info("Categories available", "List all categories")) {
+                respond(listOf("business", "entertainment", "general", "health", "science", "sports", "technology"))
+            }
+
             route("/category/{category}").get<CategoryParameters, Articles>(info("Articles available on category", "List all articles of category")) { parameters ->
                  respond(articleService.category(parameters.category))
             }
