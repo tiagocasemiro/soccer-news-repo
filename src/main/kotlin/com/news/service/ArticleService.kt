@@ -44,7 +44,7 @@ class ArticleService(
         return adapter.articles()
     }
 
-    fun intercept(): Articles {
+    fun theInterceptBrazil(): Articles {
         val intercept = interceptRepository.feed()
         val adapter = InterceptAdapter(intercept)
         val list = adapter.articles()
@@ -52,7 +52,7 @@ class ArticleService(
         return Articles(status = "success", totalResults = list.size, articles = list)
     }
 
-    fun techmundo(): Articles {
+    fun techMundo(): Articles {
         val techMundo = techMundoRepository.feed()
         val adapter = TechMundoAdapter(techMundo)
         val list = adapter.articles()
