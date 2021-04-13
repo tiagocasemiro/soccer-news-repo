@@ -12,3 +12,9 @@ data class Article (
     @SerializedName("publishedAt") val publishedAt : String? = null,
     @SerializedName("content") val content : String? = null
 )
+
+data class Articles (
+    @SerializedName("status") val status : String,
+    @SerializedName("totalResults") val totalResults : Int,
+    @SerializedName("articles") val articles : List<Article>
+)

@@ -4,6 +4,7 @@ package com.news.routes
 
 import com.news.domain.Article
 import com.news.domain.Articles
+import com.news.domain.Categories
 import com.news.domain.Sources
 import com.news.service.ArticleService
 import com.papsign.ktor.openapigen.annotations.parameters.PathParam
@@ -64,7 +65,7 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
                 respond(articleService.sources())
             }
 
-            route("/categories").get<NoParameter, List<String>>(info("Categories available", "List all categories")) {
+            route("/categories").get<NoParameter, Categories>(info("Categories available", "List all categories")) {
                 respond(articleService.categories())
             }
 
@@ -76,7 +77,7 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
                 respond(articleService.nexo())
             }
 
-            route("/the-intercept-brasil").get<NoParameter, Articles>(info("Articles available from the intercept brasil", "List all articles of the intercept brasil")) {
+            route("/the-intercept-brazil").get<NoParameter, Articles>(info("Articles available from the intercept brasil", "List all articles of the intercept brasil")) {
                 respond(articleService.theInterceptBrazil())
             }
 

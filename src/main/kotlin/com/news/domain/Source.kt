@@ -11,3 +11,9 @@ data class Source (
 	@SerializedName("language") val language : String? = null,
 	@SerializedName("country") val country : String? = null
 )
+
+data class Sources (
+	@SerializedName("status") val status : String,
+	@SerializedName("totalResults") var totalResults : Int,
+	@SerializedName("sources") val sources : List<Source>
+)

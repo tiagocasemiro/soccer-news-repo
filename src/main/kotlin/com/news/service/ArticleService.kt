@@ -1,8 +1,6 @@
 package com.news.service
 
-import com.news.domain.Article
-import com.news.domain.Articles
-import com.news.domain.Sources
+import com.news.domain.*
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.nexo.NexoRepository
@@ -33,12 +31,22 @@ class ArticleService(
         return articleRepository.category(category)
     }
 
-    fun categories(): List<String> {
-        return listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
+    fun categories(): Categories {
+        val list = listOf("business", "entertainment", "general", "health", "science", "sports", "technology").map { Category(it) }
+        return Categories(
+            status = "SUCCESS",
+            categories = list,
+            totalResults = list.size
+        )
     }
 
     fun sources(): Sources {
-        return articleRepository.sources()
+        val sources = articleRepository.sources()
+        sources.apply {
+            totalResults = this.sources.size
+        }
+
+        return sources
     }
 
     fun nexo(): List<Article> {
@@ -65,3 +73,17 @@ class ArticleService(
     }
 
 }
+
+//todo *** adicionar nova fonte ***
+//todo https://feeds.elpais.com/mrss-s/pages/ep/site/brasil.elpais.com/portada
+//todo https://www.microsoft.com/en-us/edge/microsoft-news
+//todo https://medium.com/rakuten-rapidapi/top-10-best-news-apis-google-news-bloomberg-bing-news-and-more-bbf3e6e46af6
+//todo https://www.bloomberg.com.br/agende-uma-demo/
+//todo https://newsapi.ai/
+//todo https://webhose.io/news-api/brazil-news-api
+//todo https://newsapi.org/s/brazil-news-api
+//todo https://www.scaleserp.com/docs/locations-api/overview
+//todo
+
+
+
