@@ -2,26 +2,25 @@
 
 package com.news.routes
 
-import com.news.domain.Article
-import com.news.domain.Articles
-import com.news.domain.Categories
-import com.news.domain.Sources
 import com.news.service.ArticleService
-import com.papsign.ktor.openapigen.annotations.parameters.PathParam
+import com.news.domain.Categories
+import com.news.domain.Articles
+import com.news.domain.Sources
 import com.papsign.ktor.openapigen.annotations.parameters.QueryParam
-import com.papsign.ktor.openapigen.openAPIGen
-import com.papsign.ktor.openapigen.route.info
+import com.papsign.ktor.openapigen.annotations.parameters.PathParam
 import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute
-import com.papsign.ktor.openapigen.route.path.normal.get
 import com.papsign.ktor.openapigen.route.response.respond
-import com.papsign.ktor.openapigen.route.route
+import com.papsign.ktor.openapigen.route.path.normal.get
 import com.papsign.ktor.openapigen.route.throws
-import io.ktor.application.*
-import io.ktor.http.HttpStatusCode.Companion.FailedDependency
+import com.papsign.ktor.openapigen.route.route
+import com.papsign.ktor.openapigen.route.info
+import com.papsign.ktor.openapigen.openAPIGen
+import java.net.UnknownHostException
 import io.ktor.http.HttpStatusCode.Companion.InternalServerError
+import io.ktor.http.HttpStatusCode.Companion.FailedDependency
+import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import java.net.UnknownHostException
 
 open class NoParameter
 
@@ -73,8 +72,12 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
                  respond(articleService.category(parameters.category))
             }
 
-            route("/nexo").get<NoParameter, List<Article>>(info("Articles available from nexo", "List all articles of nexo")) {
+            route("/nexo").get<NoParameter, Articles>(info("Articles available from nexo", "List all articles of nexo")) {
                 respond(articleService.nexo())
+            }
+
+            route("/el-pais").get<NoParameter, Articles>(info("Articles available from el pais", "List all articles of el pais")) {
+                respond(articleService.elPais())
             }
 
             route("/the-intercept-brazil").get<NoParameter, Articles>(info("Articles available from the intercept brasil", "List all articles of the intercept brasil")) {
