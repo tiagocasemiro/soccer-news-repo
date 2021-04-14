@@ -15,7 +15,7 @@ class NexoAdapter(from: SyndFeed) : BaseArticleAdapter<Article>(from) {
                 name = entry.source?.title?: "Nexo Jornal",
                 description = entry.source?.description,
                 url = entry.source?.link,
-                language = entry.source?.language,
+                language = entry.source?.language?: "Português",
                 country = "Brasil",
                 category = "general"),
             title = entry.title,
