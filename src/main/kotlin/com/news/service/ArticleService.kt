@@ -94,6 +94,9 @@ class ArticleService(
 //todo https://webhose.io/news-api/brazil-news-api
 //todo https://newsapi.org/s/brazil-news-api
 //todo https://www.scaleserp.com/docs/locations-api/overview
+//todo https://webhose.io/news-api/brazil-news-api
+//todo https://mediastack.com/sources/brazil-news-api
+//todo https://www.serpwow.com/google-news-api?gclid=Cj0KCQjwpdqDBhCSARIsAEUJ0hPbiaaeP_BdSKgakjBmNvL-RwLPUi6jxDqYn_do7z1neL-yHpbnp-gaAl7bEALw_wcB
 //todo
 
 
