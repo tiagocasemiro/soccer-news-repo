@@ -1,15 +1,15 @@
 package com.news.service
 
-import com.news.domain.*
-import com.news.repository.remote.elpais.ElPaisRepository
-import com.news.repository.remote.google.ArticleRepository
-import com.news.repository.remote.intercept.InterceptRepository
-import com.news.repository.remote.nexo.NexoRepository
 import com.news.repository.remote.techmundo.TechMundoRepository
-import com.news.service.adapter.ElPaisAdapter
-import com.news.service.adapter.InterceptAdapter
-import com.news.service.adapter.NexoAdapter
+import com.news.repository.remote.intercept.InterceptRepository
+import com.news.repository.remote.google.ArticleRepository
+import com.news.repository.remote.elpais.ElPaisRepository
+import com.news.repository.remote.nexo.NexoRepository
 import com.news.service.adapter.TechMundoAdapter
+import com.news.service.adapter.InterceptAdapter
+import com.news.service.adapter.ElPaisAdapter
+import com.news.service.adapter.NexoAdapter
+import com.news.domain.*
 
 class ArticleService(
     private val articleRepository: ArticleRepository,
@@ -27,7 +27,13 @@ class ArticleService(
     }
 
     fun headlines(source: String): Articles {
-        return articleRepository.headlinesSource(source)
+        return when(source) {
+            nexoSource().id -> nexo()
+            techMundoSource().id -> techMundo()
+            theInterceptBrazilSource().id -> theInterceptBrazil()
+            elPaisSource().id -> elPais()
+            else -> articleRepository.headlinesSource(source)
+        }
     }
 
     fun category(category: String): Articles {
@@ -37,7 +43,7 @@ class ArticleService(
     fun categories(): Categories {
         val list = listOf("business", "entertainment", "general", "health", "science", "sports", "technology").map { Category(it) }
         return Categories(
-            status = "SUCCESS",
+            status = "ok",
             categories = list,
             totalResults = list.size
         )
@@ -46,6 +52,7 @@ class ArticleService(
     fun sources(): Sources {
         val sources = articleRepository.sources()
         sources.apply {
+            this.sources.toMutableList().addAll(extraSources())
             totalResults = this.sources.size
         }
 
