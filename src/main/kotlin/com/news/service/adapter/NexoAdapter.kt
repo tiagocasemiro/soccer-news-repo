@@ -1,31 +1,21 @@
 package com.news.service.adapter
 
-import com.google.gson.annotations.SerializedName
 import com.news.domain.Article
-import com.news.domain.Source
+import com.news.domain.nexoSource
 import com.rometools.rome.feed.synd.SyndEntry
 import com.rometools.rome.feed.synd.SyndFeed
 class NexoAdapter(from: SyndFeed) : BaseArticleAdapter<Article>(from) {
 
-    override fun article(entry: SyndEntry): Article {
+    override fun article(entry: SyndEntry) = Article(
+        source = nexoSource(),
+        title = entry.title,
+        url = entry.link,
+        publishedAt = entry.publishedDate?.toString(),
+        description = entry.description?.value,
+        author = entry.author,
+        urlToImage = extractImageFromDescription(entry.description?.toString()),
+        content = extractContentFromDescription(entry.description?.toString()))
 
-        return Article(
-            source = Source(
-                id = "nexo-jornal",
-                name = entry.source?.title?: "Nexo Jornal",
-                description = entry.source?.description,
-                url = entry.source?.link,
-                language = entry.source?.language?: "Português",
-                country = "Brasil",
-                category = "general"),
-            title = entry.title,
-            url = entry.link,
-            publishedAt = entry.publishedDate?.toString(),
-            description = entry.description?.value,
-            author = entry.author,
-            urlToImage = extractImageFromDescription(entry.description?.toString()),
-            content = extractContentFromDescription(entry.description?.toString()))
-    }
 
     /*
 
@@ -47,6 +37,3 @@ class NexoAdapter(from: SyndFeed) : BaseArticleAdapter<Article>(from) {
         return ""
     }
 }
-
-
-@SerializedName("content") val content : String? = null
