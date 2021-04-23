@@ -57,7 +57,7 @@ class ArticleService(
         val adapter = NexoAdapter(nexo)
         val list = adapter.articles()
 
-        return Articles(status = "success", totalResults = list.size, articles = list)
+        return Articles(status = "ok", totalResults = list.size, articles = list)
     }
 
     fun theInterceptBrazil(): Articles {
@@ -65,7 +65,7 @@ class ArticleService(
         val adapter = InterceptAdapter(intercept)
         val list = adapter.articles()
 
-        return Articles(status = "success", totalResults = list.size, articles = list)
+        return Articles(status = "ok", totalResults = list.size, articles = list)
     }
 
     fun techMundo(): Articles {
@@ -73,7 +73,7 @@ class ArticleService(
         val adapter = TechMundoAdapter(techMundo)
         val list = adapter.articles()
 
-        return Articles(status = "success", totalResults = list.size, articles = list)
+        return Articles(status = "ok", totalResults = list.size, articles = list)
     }
 
     fun elPais(): Articles {
@@ -81,7 +81,7 @@ class ArticleService(
         val adapter = ElPaisAdapter(elPais)
         val list = adapter.articles()
 
-        return Articles(status = "success", totalResults = list.size, articles = list)
+        return Articles(status = "ok", totalResults = list.size, articles = list)
     }
 }
 
