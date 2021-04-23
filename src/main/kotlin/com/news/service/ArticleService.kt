@@ -51,12 +51,15 @@ class ArticleService(
 
     fun sources(): Sources {
         val sources = articleRepository.sources()
-        sources.apply {
-            this.sources.toMutableList().addAll(extraSources())
-            totalResults = this.sources.size
-        }
+        val allSource = mutableListOf<Source>()
+        allSource.addAll(sources.sources)
+        allSource.addAll(extraSources())
 
-        return sources
+        return Sources (
+            status = "ok",
+            sources = allSource,
+            totalResults = allSource.size
+        )
     }
 
     fun nexo(): Articles {

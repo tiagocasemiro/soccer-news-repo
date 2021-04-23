@@ -14,7 +14,7 @@ data class Source (
 
 data class Sources (
 	@SerializedName("status") val status : String,
-	@SerializedName("totalResults") var totalResults : Int,
+	@SerializedName("totalResults") val totalResults : Int,
 	@SerializedName("sources") val sources : List<Source>
 )
 
