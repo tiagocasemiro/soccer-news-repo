@@ -41,7 +41,7 @@ class ArticleService(
     }
 
     fun categories(): Categories {
-        val list = listOf("business", "entertainment", "general", "health", "science", "sports", "technology").map { Category(it) }
+        val list = listOf("business", "entertainment", "general", "health", "science", "sports", "technology", "politics").map { Category(it) }
         return Categories(
             status = "ok",
             categories = list,

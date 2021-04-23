@@ -32,7 +32,7 @@ fun techMundoSource() = Source(
 	name = "Novidades do TecMundo",
 	description = "Descubra e aprenda tudo sobre tecnologia",
 	url = "http://www.tecmundo.com.br",
-	category = "Tecnologia",
+	category = "technology",
 	language = "Português")
 
 fun theInterceptBrazilSource() = Source(
@@ -40,7 +40,7 @@ fun theInterceptBrazilSource() = Source(
 	name = "The Intercept Brasil",
 	description = "O The Intercept Brasil é uma premiada agência de notícias dedicada à responsabilização dos poderosos por meio de um jornalismo destemido e combativo. Suas investigações aprofundadas e suas análises implacáveis se concentram em política, corrupção, meio ambiente, segurança pública, tecnologia, mídia e muito mais. O The Intercept dá aos seus jornalistas a liberdade editorial e o suporte legal de que precisam para expor a corrupção e a injustiça onde quer que as encontrem",
 	url = "https://theintercept.com",
-	category = "Política",
+	category = "politics",
 	language = "Português")
 
 fun elPaisSource() = Source(
@@ -48,7 +48,7 @@ fun elPaisSource() = Source(
 	name = "Edição Brasil no EL PAÍS: o jornal global",
 	description = "Últimas notícias do Brasil e do mundo: política, economia, esportes, cultura e sociedade no EL PAÍS. Além disso, especiais, vídeos, fotos, áudios, gráficos e entrevistas com o EL PAÍS.",
 	url = "https://brasil.elpais.com",
-	category = "General",
+	category = "general",
 	language = "Português",
 	country = "Brasil")
 
