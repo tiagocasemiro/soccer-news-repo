@@ -96,18 +96,16 @@ class ArticleService(
 }
 
 //todo *** adicionar nova fonte ***
-//todo https://feeds.elpais.com/mrss-s/pages/ep/site/brasil.elpais.com/portada
-//todo https://www.microsoft.com/en-us/edge/microsoft-news
-//todo https://medium.com/rakuten-rapidapi/top-10-best-news-apis-google-news-bloomberg-bing-news-and-more-bbf3e6e46af6
-//todo https://www.bloomberg.com.br/agende-uma-demo/
+
+//todo Integrar - Conta feita com gmail (Verificar melhor)
+//todo https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/pricing
+
+// todo Integrar
 //todo https://newsapi.ai/
-//todo https://webhose.io/news-api/brazil-news-api
-//todo https://newsapi.org/s/brazil-news-api
-//todo https://www.scaleserp.com/docs/locations-api/overview
-//todo https://webhose.io/news-api/brazil-news-api
+
+
+// todo Integrar
 //todo https://mediastack.com/sources/brazil-news-api
-//todo https://www.serpwow.com/google-news-api?gclid=Cj0KCQjwpdqDBhCSARIsAEUJ0hPbiaaeP_BdSKgakjBmNvL-RwLPUi6jxDqYn_do7z1neL-yHpbnp-gaAl7bEALw_wcB
-//todo
 
 
 
