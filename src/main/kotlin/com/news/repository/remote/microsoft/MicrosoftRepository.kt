@@ -1,0 +1,13 @@
+package com.news.repository.remote.microsoft
+
+import com.rometools.rome.feed.synd.SyndFeed
+import com.rometools.rome.io.SyndFeedInput
+import com.rometools.rome.io.XmlReader
+import java.net.URL
+
+class MicrosoftRepository (private val syndFeedInput: SyndFeedInput) {
+
+    fun feed(): SyndFeed {
+        return syndFeedInput.build(XmlReader(URL("https://news.microsoft.com/pt-br/feed")))
+    }
+}
