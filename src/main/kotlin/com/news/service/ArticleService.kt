@@ -5,18 +5,17 @@ import com.news.repository.remote.intercept.InterceptRepository
 import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.elpais.ElPaisRepository
 import com.news.repository.remote.nexo.NexoRepository
-import com.news.service.adapter.TechMundoAdapter
-import com.news.service.adapter.InterceptAdapter
-import com.news.service.adapter.ElPaisAdapter
-import com.news.service.adapter.NexoAdapter
 import com.news.domain.*
+import com.news.repository.remote.microsoft.MicrosoftRepository
+import com.news.service.adapter.*
 
 class ArticleService(
     private val articleRepository: ArticleRepository,
     private val nexoRepository: NexoRepository,
     private val interceptRepository: InterceptRepository,
     private val techMundoRepository: TechMundoRepository,
-    private val elPaisRepository: ElPaisRepository) {
+    private val elPaisRepository: ElPaisRepository,
+    private val microsoftRepository: MicrosoftRepository) {
 
     fun everything(query: String): Articles {
         return articleRepository.everything(query)
@@ -89,6 +88,14 @@ class ArticleService(
     fun elPais(): Articles {
         val elPais = elPaisRepository.feed()
         val adapter = ElPaisAdapter(elPais)
+        val list = adapter.articles()
+
+        return Articles(status = "ok", totalResults = list.size, articles = list)
+    }
+
+    fun microsoft(): Articles {
+        val microsoft = microsoftRepository.feed()
+        val adapter = MicrosoftAdapter(microsoft)
         val list = adapter.articles()
 
         return Articles(status = "ok", totalResults = list.size, articles = list)

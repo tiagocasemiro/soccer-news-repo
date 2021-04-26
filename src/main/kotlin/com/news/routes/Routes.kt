@@ -87,6 +87,10 @@ fun NormalOpenAPIRoute.articles(articleService: ArticleService) {
             route("/tech-mundo").get<NoParameter, Articles>(info("Articles available from tech mundo", "List all articles of tech mundo")) {
                 respond(articleService.techMundo())
             }
+
+            route("/tech-mundo").get<NoParameter, Articles>(info("Articles available from microsoft news", "List all articles of microsoft")) {
+                respond(articleService.microsoft())
+            }
         }
     }
 }
