@@ -3,6 +3,7 @@ import com.news.repository.remote.google.ArticleRepository
 import com.news.repository.remote.google.GoogleNewsApi
 import com.news.repository.remote.google.HeaderInterceptor
 import com.news.repository.remote.intercept.InterceptRepository
+import com.news.repository.remote.microsoft.MicrosoftRepository
 import com.news.repository.remote.nexo.NexoRepository
 import com.news.repository.remote.techmundo.TechMundoRepository
 import com.news.service.ArticleService
@@ -43,7 +44,7 @@ val rssModule = module() {
 
 val serviceModules = module {
     factory {
-        ArticleService(articleRepository = get(), nexoRepository = get(), interceptRepository = get(), techMundoRepository = get(), elPaisRepository = get())
+        ArticleService(articleRepository = get(), nexoRepository = get(), interceptRepository = get(), techMundoRepository = get(), elPaisRepository = get(), microsoftRepository = get())
     }
 }
 
@@ -62,5 +63,8 @@ val repositoryModules = module {
     }
     factory {
         ElPaisRepository(syndFeedInput = get())
+    }
+    factory {
+        MicrosoftRepository(syndFeedInput = get())
     }
 }
