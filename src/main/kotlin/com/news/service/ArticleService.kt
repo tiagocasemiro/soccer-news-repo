@@ -40,7 +40,7 @@ class ArticleService(
     }
 
     fun categories(): Categories {
-        val list = listOf("business", "entertainment", "general", "health", "science", "sports", "technology", "politics").map { Category(it) }
+        val list = listOf(Category("business", "Negócios"), Category("entertainment", "Entretenimento"), Category("general", "Geral"), Category("health", "Principal"), Category("science", "Ciência"), Category("sports", "Esportes"), Category("technology", "Tecnologia"), Category("politics", "Política"))
         return Categories(
             status = "ok",
             categories = list,
@@ -93,7 +93,7 @@ class ArticleService(
         return Articles(status = "ok", totalResults = list.size, articles = list)
     }
 
-    fun microsoft(): Articles {
+    fun microsoft(): Articles { // todo add this to headlines
         val microsoft = microsoftRepository.feed()
         val adapter = MicrosoftAdapter(microsoft)
         val list = adapter.articles()
