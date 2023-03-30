@@ -88,5 +88,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.3.1'
 
     // Api Documentation
-    implementation 'com.github.papsign:Ktor-OpenAPI-Generator:-SNAPSHOT'
+    implementation 'com.github.papsign:Ktor-OpenAPI-Generator:0.3-beta.3
+-SNAPSHOT'
 }
